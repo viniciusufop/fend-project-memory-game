@@ -82,8 +82,6 @@ function validarCard(card) {
         if(cardOpen1.classList.item(cardOpen1.classList.length-1) 
             === cardOpen2.classList.item(cardOpen2.classList.length-1)){
             //fluxo de acerto do jogo
-            cardOpen1.classList.add('match');
-            cardOpen2.classList.add('match');
             cardOpen1.classList.add('certo');
             cardOpen2.classList.add('certo');
         } else {

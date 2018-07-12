@@ -91,11 +91,11 @@ h1 {
 
 }
 
-/*configuracao especifica do card finalizado */
+/*configuracao especifica do card finalizado
 .deck .card .open.match {
     background: #02ccba;
 }
-
+ */
 /* animacao de flipper */
 .deck .card.flipper {
 	animation-duration: 500ms;
@@ -111,8 +111,10 @@ h1 {
         transform: rotateY(-180deg);
     }
 }
+
 /* animacao de card certo */
-.certo {
+.deck .card .open.certo {
+    background: #02ccba;
 	animation-duration: 500ms;
 	animation-name: efeito-certo;
 }
@@ -126,6 +128,30 @@ h1 {
     }
 	100% {
 	    transform: scale(1) rotateY(-180deg); 
+	}
+}
+
+/* animacao de card errado */
+.errado {
+	animation-duration: 500ms;
+	animation-name: efeito-errado;
+}
+
+@keyframes efeito-errado {
+    0% {
+		transform: rotate(-10deg) translateX(-30px) rotateY(-180deg); 
+	}
+    25% { 
+	    transform: rotate(5deg) translateX(10px) rotateY(-180deg);
+    }
+    50% {
+	    transform: rotate(-10deg) translateX(-30px) rotateY(-180deg); 
+	}
+    75% {
+	    transform: rotate(5deg) translateX(10px) rotateY(-180deg);
+	}
+  100% {
+        transform: rotate(0) translateX(0) rotateY(-180deg); 
 	}
 }
 
