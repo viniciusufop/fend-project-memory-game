@@ -96,9 +96,7 @@ h1 {
     background: #02ccba;
 }
 
-/*
-    evento de flipper 
-*/
+/* animacao de flipper */
 .deck .card.flipper {
 	animation-duration: 500ms;
 	animation-name: efeito-flipper;
@@ -113,7 +111,23 @@ h1 {
         transform: rotateY(-180deg);
     }
 }
+/* animacao de card certo */
+.certo {
+	animation-duration: 500ms;
+	animation-name: efeito-certo;
+}
 
+@keyframes efeito-certo {
+	0% {
+		transform: scale(1.3, 0.5) rotateY(-180deg);  
+	}
+	50% {
+		transform: scale(0.5, 1.3) rotateY(-180deg);
+    }
+	100% {
+	    transform: scale(1) rotateY(-180deg); 
+	}
+}
 
 /*
  * Styles for the Score Panel

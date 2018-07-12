@@ -65,8 +65,9 @@ function fimAnimacao(evt) {
 	let card = evt.target;
 	//inicia o tratamento apos o flip
 	if(evt.animationName == 'efeito-flipper'){
-		validarCard(card);	
-	}
+        validarCard(card);
+        return;	
+    }
 }
 
 function validarCard(card) {
@@ -83,7 +84,8 @@ function validarCard(card) {
             //fluxo de acerto do jogo
             cardOpen1.classList.add('match');
             cardOpen2.classList.add('match');
-
+            cardOpen1.classList.add('certo');
+            cardOpen2.classList.add('certo');
         } else {
             //fluxo de erro do jogo
             card1.classList.remove('flipper');
