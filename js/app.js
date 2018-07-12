@@ -36,3 +36,16 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+window.onload = function initElement() {
+    //obter todos os card's
+    let listaCard = document.getElementsByClassName('card');
+	for(let card of listaCard) {
+        //adicionar o evento de click no card
+        card.addEventListener('click',clickCard);
+	}
+};
+
+function clickCard(evt) {
+	let card = this;
+	card.classList.toggle('flipper');
+}
