@@ -106,9 +106,17 @@ function validarCard(card) {
 }
 
 function atualizarMovimento(){
+    //preencher incremento de movimento
     movimento += 1;
     const texto = movimento + (movimento > 1 ? ' Moves' : ' Move');
     const ele = document.getElementById('move');
     console.log(ele.textContent);
     ele.textContent = texto;
+    //tratamento para eliminar as estrelas
+    if(movimento === 10 || movimento === 14 || movimento === 18) {
+        const estrelas = document.getElementsByClassName('fa-star');
+        const estrela = estrelas[estrelas.length-1];
+        estrela.classList.remove('fa-star');
+        estrela.classList.add('fa-star-o');
+    }
 }
