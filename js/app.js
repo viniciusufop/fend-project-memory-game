@@ -74,18 +74,22 @@ function validarCard(card) {
     if(cardsAbertos.length === 2){
         const card1 = cardsAbertos[0];
         const card2 = cardsAbertos[1];
-        const figura1 = card1.lastElementChild.classList.item(card1.lastElementChild.classList.length-1);
-        const figura2 = card2.lastElementChild.classList.item(card2.lastElementChild.classList.length-1);
+        const cardOpen1 = card1.lastElementChild;
+        const cardOpen2 = card2.lastElementChild;
         
-        if(figura1 === figura2){
-            //fluxo de acerto do jogo    
+        //valida se as figuras sao iguais
+        if(cardOpen1.classList.item(cardOpen1.classList.length-1) 
+            === cardOpen2.classList.item(cardOpen2.classList.length-1)){
+            //fluxo de acerto do jogo
+            cardOpen1.classList.add('match');
+            cardOpen2.classList.add('match');
+
         } else {
             //fluxo de erro do jogo
-            cardsAbertos = [];
             card1.classList.remove('flipper');
             card2.classList.remove('flipper');
-            console.log(cardsAbertos);
+            
         }
-
+        cardsAbertos = [];
     }
 }
