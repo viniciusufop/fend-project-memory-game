@@ -77,6 +77,7 @@ function fimAnimacao(evt) {
     }
 }
 
+let movimento = 0;
 function validarCard(card) {
     //caso lista de card aberto seja 2 inicia validacao
     if(cardsAbertos.length === 2){
@@ -98,5 +99,16 @@ function validarCard(card) {
             
         }
         cardsAbertos = [];
+        //executa fluxo para atualiza a quantidade de movimento
+        atualizarMovimento();
+
     }
+}
+
+function atualizarMovimento(){
+    movimento += 1;
+    const texto = movimento + (movimento > 1 ? ' Moves' : ' Move');
+    const ele = document.getElementById('move');
+    console.log(ele.textContent);
+    ele.textContent = texto;
 }
