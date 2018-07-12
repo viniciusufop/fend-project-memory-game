@@ -62,10 +62,17 @@ function clickCard(evt) {
 }
 
 function fimAnimacao(evt) {
-	let card = evt.target;
+	let elemento = evt.target;
 	//inicia o tratamento apos o flip
 	if(evt.animationName == 'efeito-flipper'){
-        validarCard(card);
+        validarCard(elemento);
+        return;	
+    }
+
+    //inicia o tratamento apos o animacao de combinacao errada
+	if(evt.animationName == 'efeito-errado'){
+        elemento.classList.remove('errado');
+        elemento.parentNode.classList.remove('flipper');
         return;	
     }
 }
@@ -86,8 +93,8 @@ function validarCard(card) {
             cardOpen2.classList.add('certo');
         } else {
             //fluxo de erro do jogo
-            card1.classList.remove('flipper');
-            card2.classList.remove('flipper');
+            cardOpen1.classList.add('errado');
+            cardOpen2.classList.add('errado');
             
         }
         cardsAbertos = [];
