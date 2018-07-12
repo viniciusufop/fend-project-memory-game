@@ -37,15 +37,55 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 window.onload = function initElement() {
+    //execucao apos finalizar animacao
+    document.addEventListener('animationend',fimAnimacao);
     //obter todos os card's
-    let listaCard = document.getElementsByClassName('card');
-	for(let card of listaCard) {
+    const listaCard = document.getElementsByClassName('card');
+	for(const card of listaCard) {
         //adicionar o evento de click no card
         card.addEventListener('click',clickCard);
 	}
 };
 
+let cardsAbertos = [];
 function clickCard(evt) {
-	let card = this;
-	card.classList.toggle('flipper');
+    let card = this;
+    //click apenas para abrir o card, caso contrario nao faz nada
+    if(card.classList.contains('flipper') || cardsAbertos.length === 2){
+        return;
+    }
+    //vira o card
+    card.classList.add('flipper');
+    //adiciona ele ao array
+    cardsAbertos.push(card);
+    //continua o fluxo apos a animacao
+}
+
+function fimAnimacao(evt) {
+	let card = evt.target;
+	//inicia o tratamento apos o flip
+	if(evt.animationName == 'efeito-flipper'){
+		validarCard(card);	
+	}
+}
+
+function validarCard(card) {
+    //caso lista de card aberto seja 2 inicia validacao
+    if(cardsAbertos.length === 2){
+        const card1 = cardsAbertos[0];
+        const card2 = cardsAbertos[1];
+        const figura1 = card1.lastElementChild.classList.item(card1.lastElementChild.classList.length-1);
+        const figura2 = card2.lastElementChild.classList.item(card2.lastElementChild.classList.length-1);
+        
+        if(figura1 === figura2){
+            //fluxo de acerto do jogo    
+        } else {
+            //fluxo de erro do jogo
+            cardsAbertos = [];
+            card1.classList.remove('flipper');
+            card2.classList.remove('flipper');
+            console.log(cardsAbertos);
+        }
+
+    }
 }

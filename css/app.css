@@ -100,9 +100,19 @@ h1 {
     evento de flipper 
 */
 .deck .card.flipper {
-    transform: rotateY(-180deg);
+	animation-duration: 500ms;
+	animation-name: efeito-flipper;
+	animation-fill-mode: forwards;
 }
 
+@keyframes efeito-flipper {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(-180deg);
+    }
+}
 
 
 /*
