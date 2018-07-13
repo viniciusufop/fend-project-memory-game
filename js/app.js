@@ -44,8 +44,30 @@ window.onload = function initElement() {
 	for(const card of listaCard) {
         //adicionar o evento de click no card
         card.addEventListener('click',clickCard);
-	}
+    }
+    //obter 
+    const restart = document.getElementById('restart');
+    restart.addEventListener('click', reiniciar);
 };
+
+function reiniciar(){
+    //retornando as estrelas
+    for(let estrela of document.getElementById('stars').children){
+        estrela.firstElementChild.classList.add('fa-star');
+        estrela.firstElementChild.classList.remove('fa-star-o');
+    }
+    //retornando o movimento
+    movimento = 0;
+    atualizarMovimento();
+    //fechando todos os card
+    for(let card of document.getElementsByClassName('card')){
+        card.classList.remove('flipper');
+    }
+    //removendo todos os certos
+    for(let face of document.getElementsByClassName('open')){
+        face.classList.remove('certo');
+    }
+}
 
 let cardsAbertos = [];
 function clickCard(evt) {
@@ -58,7 +80,6 @@ function clickCard(evt) {
     card.classList.add('flipper');
     //adiciona ele ao array
     cardsAbertos.push(card);
-    //continua o fluxo apos a animacao
 }
 
 function fimAnimacao(evt) {
@@ -77,7 +98,6 @@ function fimAnimacao(evt) {
     }
 }
 
-let movimento = 0;
 function validarCard(card) {
     //caso lista de card aberto seja 2 inicia validacao
     if(cardsAbertos.length === 2){
@@ -96,24 +116,22 @@ function validarCard(card) {
             //fluxo de erro do jogo
             cardOpen1.classList.add('errado');
             cardOpen2.classList.add('errado');
-            
         }
         cardsAbertos = [];
+        //preencher incremento de movimento
+        movimento += 1;
         //executa fluxo para atualiza a quantidade de movimento
         atualizarMovimento();
-
     }
 }
 
+let movimento = 0;
 function atualizarMovimento(){
-    //preencher incremento de movimento
-    movimento += 1;
     const texto = movimento + (movimento > 1 ? ' Moves' : ' Move');
     const ele = document.getElementById('move');
-    console.log(ele.textContent);
     ele.textContent = texto;
     //tratamento para eliminar as estrelas
-    if(movimento === 10 || movimento === 14 || movimento === 18) {
+    if( movimento === 10 || movimento === 14 || movimento === 18) {
         const estrelas = document.getElementsByClassName('fa-star');
         const estrela = estrelas[estrelas.length-1];
         estrela.classList.remove('fa-star');
