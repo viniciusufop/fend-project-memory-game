@@ -110,7 +110,7 @@ h1 {
 /* animacao de card certo */
 .deck .card .open.certo {
     background: #02ccba;
-	animation-duration: 1s;
+	animation-duration: 500ms;
     animation-name: efeito-certo;
 }
 
@@ -118,8 +118,14 @@ h1 {
 	0% {
 		transform: scale(1.2, 0.5) rotateY(-180deg);  
 	}
-	50% {
+	30% {
 		transform: scale(0.5, 1.2) rotateY(-180deg);
+    }
+    60% {
+		transform: scale(1.1, 0.8) rotateY(-180deg);
+    }
+    80% {
+		transform: scale(0.8, 1.1) rotateY(-180deg);
     }
 	100% {
 	    transform: scale(1) rotateY(-180deg); 
@@ -129,7 +135,7 @@ h1 {
 /* animacao de card errado */
 .deck .card .open.errado {
     background: #ff0000;
-	animation-duration: 1s;
+	animation-duration: 500ms;
 	animation-name: efeito-errado;
 }
 
