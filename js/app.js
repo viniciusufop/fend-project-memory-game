@@ -224,7 +224,7 @@ let executouFimJogo = false;
  */
 function fimDeJogo(){
 	//valida se fechou todos os pares do jogo
-	if(paresCompletos === 1 && !executouFimJogo){
+	if(paresCompletos === 8 && !executouFimJogo){
 		//nao executar 2 vezes, pois eh chamado apos o concluir o evento do card
 		executouFimJogo = true;
 		//preencher resultado do jogo
