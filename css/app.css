@@ -332,19 +332,9 @@ h1 {
 
 @keyframes preenchimentoCheckEsquerda {
     0% {
-        opacity: 0.3; 
+        opacity: 1; 
         width: 1px; 
         transform: rotate(45deg) translate(20px, 8px);
-    }
-    50% {
-        opacity: 0.3; 
-        width: 30px; 
-        transform: rotate(45deg) translate(39px, 19px);
-    }
-    99% {
-        opacity: 0.3; 
-        width: 30px; 
-        transform: rotate(45deg) translate(39px, 19px);
     }
     100% {
         opacity: 1; 
@@ -355,15 +345,9 @@ h1 {
 
 @keyframes preenchimentoCheckDireita {
     0% {
-        opacity: 0.3; 
+        opacity: 1; 
         width: 1px; 
         transform: rotate(135deg) translate(-15px, -41px);
-    }
-    99% {
-        opacity: 0.3; 
-        width: 40px; 
-        transform: rotate(135deg) 
-        translate(17px, -26px);
     }
     100% {
         opacity: 1; 
