@@ -180,3 +180,29 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/*
+ * Estilos para a apresentacao do resultado
+ */
+ #resultado {
+	color: #dddddd;
+}
+ 
+.result{
+    text-align: center;
+	font-weight:bold;
+	height: 100%;
+}
+
+.play {
+    background-color: #02ccba;
+    color:#ffffff;
+    border-radius: 7px;
+    width: 120px;
+    height: 40px;
+	font-weight: bolder;
+}
+
+.container.invisivel {
+    display:none;
+}
