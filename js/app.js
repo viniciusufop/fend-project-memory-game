@@ -224,7 +224,7 @@ let executouFimJogo = false;
  */
 function fimDeJogo(){
 	//valida se fechou todos os pares do jogo
-	if(paresCompletos === 8 && !executouFimJogo){
+	if(paresCompletos === 1 && !executouFimJogo){
 		//nao executar 2 vezes, pois eh chamado apos o concluir o evento do card
 		executouFimJogo = true;
 		//preencher resultado do jogo
@@ -232,7 +232,16 @@ function fimDeJogo(){
 		//inserir informacoes do usuario
 		resultado.innerHTML = `With ${movimento} moves and ${numEstrelas} Stars.<br>Woooooo!`;
 		//trocar os container
-		trocarContainerApresentado();
+        trocarContainerApresentado();
+        //animacao do checking
+        let clipped1 = document.getElementById('clipped1');
+        let clipped2 = document.getElementById('clipped2');
+        let check1 = document.getElementById('check1');
+        let check2 = document.getElementById('check2');
+        clipped1.classList.add('animacaoclipped1');
+        clipped2.classList.add('animacaoclipped2');
+        check1.classList.add('animacaocheck1');
+        check2.classList.add('animacaocheck2');
 	}
 }
 /*
@@ -246,7 +255,6 @@ function trocarContainerApresentado(){
 		container.classList.toggle('invisivel');
 	}
 }
-
 /*
  * Metodo que trata o evento click do botao Play Again
  */
@@ -258,4 +266,3 @@ function playAgain(){
 	//trocar os container
 	trocarContainerApresentado();
 }
-

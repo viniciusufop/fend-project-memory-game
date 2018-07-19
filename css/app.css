@@ -191,13 +191,17 @@ h1 {
  * Estilos para a apresentacao do resultado
  */
  #resultado {
-	color: #dddddd;
+    color: #dddddd;
+    text-align: center;
 }
  
 .result{
-    text-align: center;
 	font-weight:bold;
 	height: 100%;
+}
+
+.result h1 {
+    top: 60%;
 }
 
 .play {
@@ -206,9 +210,164 @@ h1 {
     border-radius: 7px;
     width: 120px;
     height: 40px;
-	font-weight: bolder;
+    font-weight: bolder;
 }
 
 .container.invisivel {
     display:none;
+}
+
+/*
+    Style para o checking de sucesso
+*/
+#checking {
+    position: relative;
+    width: 75px;
+    height: 75px;
+}
+
+#halfclip1, #halfclip2 {
+    width: 50%;
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    overflow: hidden;
+    transform-origin: right center;
+} 
+
+#halfclip2 {
+    transform: rotate(180deg);
+}
+
+.halfcircle {
+    box-sizing: border-box;
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    border: solid 5px transparent;
+    border-top-color: #00dd00;
+    border-right-color: #00dd00;
+    border-radius: 50%;
+    transform: rotate(0deg);
+}
+
+#clipped1, #clipped2 {
+    width: 200%;
+    opacity: 0.3;
+    transform: rotate(45deg);
+}
+
+#fixed {
+    width: 100%;
+    transform: rotate(135deg);  
+    opacity: 0.3;
+    border-bottom-color: #00dd00;
+    border-left-color: #00dd00;
+}
+
+/* configuracao check */
+#check1, #check2 {
+    position: absolute;
+    background-color: #00dd00;
+    opacity: 0;
+    height: 7px;
+    border-radius: 3px;
+    width: 1px; 
+}
+
+#check1 {
+    transform: rotate(45deg) translate(20px, 8px);
+}
+  
+#check2 {
+    transform: rotate(135deg) translate(-15px, -41px);
+}
+
+/*
+    Definicao e classes que ativam a animacao do cheking
+*/
+.animacaocheck1 {
+    animation: preenchimentoCheckEsquerda 500ms linear 2s 1 forwards;
+}
+
+.animacaocheck2 {
+    animation: preenchimentoCheckDireita 500ms linear 2500ms 1 forwards;
+}
+
+.animacaoclipped1, .animacao-clipped2{
+    transform: rotate(45deg);
+}
+.animacaoclipped1 {
+    animation: preenchimentoBordaEsquerda 2s linear 1 forwards;
+}
+.animacaoclipped2 {
+    animation: preenchimentoBordaDireita 1s linear 1s 1 forwards;
+}
+
+@keyframes preenchimentoBordaEsquerda {
+    0% {
+        transform: rotate(45deg);
+        opacity: 1;
+    }
+    50% {
+        transform: rotate(-135deg);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(-135deg);
+        opacity: 1;
+    }
+}
+
+@keyframes preenchimentoBordaDireita {
+    0% {
+        transform: rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(-135deg);
+    opacity: 1;
+    }
+}
+
+@keyframes preenchimentoCheckEsquerda {
+    0% {
+        opacity: 0.3; 
+        width: 1px; 
+        transform: rotate(45deg) translate(20px, 8px);
+    }
+    50% {
+        opacity: 0.3; 
+        width: 30px; 
+        transform: rotate(45deg) translate(39px, 19px);
+    }
+    99% {
+        opacity: 0.3; 
+        width: 30px; 
+        transform: rotate(45deg) translate(39px, 19px);
+    }
+    100% {
+        opacity: 1; 
+        width: 30px; 
+        transform: rotate(45deg) translate(39px, 19px);
+    }
+}
+
+@keyframes preenchimentoCheckDireita {
+    0% {
+        opacity: 0.3; 
+        width: 1px; 
+        transform: rotate(135deg) translate(-15px, -41px);
+    }
+    99% {
+        opacity: 0.3; 
+        width: 40px; 
+        transform: rotate(135deg) 
+        translate(17px, -26px);
+    }
+    100% {
+        opacity: 1; 
+        width: 40px; 
+        transform: rotate(135deg) translate(17px, -26px);
+    }
 }
