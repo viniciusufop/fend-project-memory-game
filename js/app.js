@@ -201,7 +201,7 @@ function atualizarMovimento(){
     //inserir nova contagem do movimento
 	ele.textContent = texto;
     //tratamento para eliminar as estrelas com 10, 14 e 18 movimentos
-    if( movimento === 10 || movimento === 14 || movimento === 18) {
+    if( movimento === 11 || movimento === 19) {
         //obtem as estrelas fechadas
 		const estrelas = document.getElementsByClassName('fa-star');
         //obtem a ultima da lista
