@@ -59,7 +59,8 @@ window.onload = function initElement() {
     const buttonPlay = document.getElementById('play');
 	//adicionar o evento de click no botao play
     buttonPlay.addEventListener('click', playAgain);
-	
+    //funcao que efetua o tratamento do cronometro
+    window.setInterval('calcularCronometro()',1000);
 };
 /*
  * Funcao que obtem a lista de imagens a serem usadas,
@@ -110,6 +111,11 @@ function reiniciar(){
     for(let face of document.getElementsByClassName('open')){
         face.classList.remove('certo');
     }
+    //zerar o cronometro
+    hora = 0;
+    min = 0;
+    sec = 0;
+    pararCronometro();
 }
 //array de cards cardsValidados
 let cardsValidados = [];
@@ -126,8 +132,11 @@ function clickCard(evt) {
     card.classList.add('flipper');
     //adiciona ele ao array
     cardsValidados.push(card);
+    //iniciar cronometro se estiver parado
+    if(!cronometroIniciado) {
+        iniciarCronometro();
+    }
 }
-
 /* 
  * Metodo desenvolvido afim de executar algumas etapas apos finalizar a animacao
  * na tela. 
@@ -265,4 +274,36 @@ function playAgain(){
 	reiniciar();
 	//trocar os container
 	trocarContainerApresentado();
+}
+
+let tempoInicial, hora, min, sec;
+let cronometroIniciado = false;
+
+function iniciarCronometro(){
+    tempoInicial = new Date();
+    cronometroIniciado = true;
+}
+
+function pararCronometro(){
+    cronometroIniciado = false;
+    preencherCronometro();
+}
+
+function calcularCronometro(){
+    if(cronometroIniciado){
+        let tempoPercorrido = Math.floor((new Date() - tempoInicial)/1000);
+        hora = Math.floor(tempoPercorrido / 3600) % 24;
+        min  = Math.floor(tempoPercorrido / 60) % 60;
+        sec  = tempoPercorrido % 60;
+        preencherCronometro();
+    }
+};
+
+function preencherCronometro(){
+    let tempo = '';
+    tempo += (hora < 10 ? '0' : '') + hora + ':';
+    tempo += (min < 10 ? '0' : '') + min + ':';
+    tempo += (sec < 10 ? '0' : '') + sec;
+    let cronometro = document.getElementById('cronometro');
+    cronometro.textContent = tempo;
 }
