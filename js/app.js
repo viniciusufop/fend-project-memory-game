@@ -82,7 +82,6 @@ function inserirCardRandomico() {
 		count++;
 	}
 }
-
 /*
  * Metodo que efetua todo tratamento do botao reiniciar
  */
@@ -112,10 +111,7 @@ function reiniciar(){
         face.classList.remove('certo');
     }
     //zerar o cronometro
-    hora = 0;
-    min = 0;
-    sec = 0;
-    pararCronometro();
+    zerarCronometro();
 }
 //array de cards cardsValidados
 let cardsValidados = [];
@@ -161,7 +157,6 @@ function fimAnimacao(evt) {
         return;	
     }
 }
-
 /*
  * Metodo que efetua a validacao do card para identificar se sao iguais ou diferentes
  */
@@ -234,12 +229,14 @@ let executouFimJogo = false;
 function fimDeJogo(){
 	//valida se fechou todos os pares do jogo
 	if(paresCompletos === 8 && !executouFimJogo){
-		//nao executar 2 vezes, pois eh chamado apos o concluir o evento do card
+        //parar o cronometro no fim do jogo
+        pararCronometro();
+        //nao executar 2 vezes, pois eh chamado apos o concluir o evento do card
 		executouFimJogo = true;
 		//preencher resultado do jogo
 		let resultado = document.getElementById('resultado');
 		//inserir informacoes do usuario
-		resultado.innerHTML = `With ${movimento} moves and ${numEstrelas} Stars.<br>Woooooo!`;
+		resultado.innerHTML = `With ${movimento} moves, ${numEstrelas} stars and ${tempo} time.<br>Woooooo!`;
 		//trocar os container
         trocarContainerApresentado();
         //animacao do checking
@@ -276,7 +273,7 @@ function playAgain(){
 	trocarContainerApresentado();
 }
 
-let tempoInicial, hora, min, sec;
+let tempoInicial, hora, min, sec, tempo;
 let cronometroIniciado = false;
 
 function iniciarCronometro(){
@@ -300,10 +297,17 @@ function calcularCronometro(){
 };
 
 function preencherCronometro(){
-    let tempo = '';
+    tempo = '';
     tempo += (hora < 10 ? '0' : '') + hora + ':';
     tempo += (min < 10 ? '0' : '') + min + ':';
     tempo += (sec < 10 ? '0' : '') + sec;
     let cronometro = document.getElementById('cronometro');
     cronometro.textContent = tempo;
+}
+
+function zerarCronometro(){
+    hora = 0;
+    min = 0;
+    sec = 0;
+    pararCronometro();
 }
