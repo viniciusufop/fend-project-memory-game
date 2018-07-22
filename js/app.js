@@ -233,12 +233,12 @@ function fimDeJogo(){
         pararCronometro();
         //nao executar 2 vezes, pois eh chamado apos o concluir o evento do card
 		executouFimJogo = true;
-		//preencher resultado do jogo
-		let resultado = document.getElementById('resultado');
+		//preencher desempenho no jogo
+		let desempenho = document.getElementById('desempenho');
 		//inserir informacoes do usuario
-		resultado.innerHTML = `With ${movimento} moves, ${numEstrelas} stars and ${tempo} time.<br>Woooooo!`;
-		//trocar os container
-        trocarContainerApresentado();
+		desempenho.innerHTML = `With ${movimento} moves, ${numEstrelas} stars and ${tempo} time.<br>Woooooo!`;
+		//abrir resultado
+        abrirModalResultado();
         //animacao do checking
         let clipped1 = document.getElementById('clipped1');
         let clipped2 = document.getElementById('clipped2');
@@ -251,15 +251,33 @@ function fimDeJogo(){
 	}
 }
 /*
- * Metodo que troca o container com a apresentacao do jogo 
- * para o com a apresentacao do resultado e vice-versa.
+ * Metodo que abre o resultado
  */
-function trocarContainerApresentado(){
-	//troca os container
-	for(let container of document.getElementsByClassName('container')){
-		//add ou remove a classe invisivel do container
-		container.classList.toggle('invisivel');
-	}
+function abrirModalResultado(){
+    //obter o resultado
+    let resultado = obterElementoResultado();
+    //abrir o modal
+    resultado.showModal();
+}
+/*
+ * Metodo que fecha o resultado
+ */
+function fecharModalResultado(){
+    //obter o resultado
+    let resultado = obterElementoResultado();
+    //fechar o modal
+    resultado.close();
+}
+/*
+ * Obter o elemento resultado e ativar/desativar o invisivel dele
+ */
+function obterElementoResultado(){
+    //obtem o elemento
+    let resultado = document.getElementById('resultado');
+    //ativa/desativa o invisivel
+    resultado.classList.toggle('invisivel');
+    //retonar o elemento
+    return resultado;
 }
 /*
  * Metodo que trata o evento click do botao Play Again
@@ -269,45 +287,70 @@ function playAgain(){
 	executouFimJogo = false;
 	//reiniciar o jogo
 	reiniciar();
-	//trocar os container
-	trocarContainerApresentado();
+    //fechar o resultado
+	fecharModalResultado();
 }
-
+//variaveis usadas para tratar o cronometro
 let tempoInicial, hora, min, sec, tempo;
 let cronometroIniciado = false;
-
+/*
+ * Funcao que inicia o cronometro
+ */
 function iniciarCronometro(){
+    //obter o tempo inicial para calcular o percorrido
     tempoInicial = new Date();
+    //iniciar a atualizacao do cronometro
     cronometroIniciado = true;
 }
-
+/*
+ * Funcao que para o cronometro
+ */
 function pararCronometro(){
+    //para de atualizar o cronometro
     cronometroIniciado = false;
+    //atualizar na tela o cronometro
     preencherCronometro();
 }
-
+/*
+ * Funcao que calcula o cronometro
+ */
 function calcularCronometro(){
+    //executar apenas se tiver iniciado o jogo
     if(cronometroIniciado){
+        //calcular o tempo ja percorrido
         let tempoPercorrido = Math.floor((new Date() - tempoInicial)/1000);
+        //calcular as horas
         hora = Math.floor(tempoPercorrido / 3600) % 24;
+        //calcular os minutos
         min  = Math.floor(tempoPercorrido / 60) % 60;
+        //calcular os segundos
         sec  = tempoPercorrido % 60;
+        //atualizar na tela o cronometro
         preencherCronometro();
     }
 };
-
+/*
+ * Funcao que atualiza o cronometro na tela
+ */
 function preencherCronometro(){
+    //montar a variavel tempo
     tempo = '';
     tempo += (hora < 10 ? '0' : '') + hora + ':';
     tempo += (min < 10 ? '0' : '') + min + ':';
     tempo += (sec < 10 ? '0' : '') + sec;
+    //obter elemento cronometro
     let cronometro = document.getElementById('cronometro');
+    //atualizar valor
     cronometro.textContent = tempo;
 }
-
+/*
+ * Funcao que zera o cronometro
+ */
 function zerarCronometro(){
+    //zera as variaveis de hora, min e sec
     hora = 0;
     min = 0;
     sec = 0;
+    //para o cronometro
     pararCronometro();
 }

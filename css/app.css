@@ -190,14 +190,19 @@ h1 {
 /*
  * Estilos para a apresentacao do resultado
  */
- #resultado {
+ #desempenho {
     color: #dddddd;
     text-align: center;
 }
  
 .result{
-	font-weight:bold;
-	height: 100%;
+    font-weight:bold;
+    width: 700px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    border-radius: 25px;
+    border-color: #ffffff;
 }
 
 .result h1 {
